@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CiudadController;
+use App\Http\Controllers\Api\MonedaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Rutas para el controlador CiudadController
 Route::controller(CiudadController::class)->group(function () {
     Route::get('ciudades', 'index');
     Route::get('ciudades/{ciudad_id}', 'obtenerClima');
+});
+
+// Rutas para el controlador MonedaController
+Route::controller(MonedaController::class)->group(function () {
+    Route::get('monedas', 'index');
+    Route::get('monedas/{ciudad_id}', 'obtenerCambio');
 });

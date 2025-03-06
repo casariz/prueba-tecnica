@@ -13,9 +13,15 @@ class Ciudad extends Model
 
     protected $primaryKey = 'ciudad_id';
 
-    public $timestamps = false; 
+    public $timestamps = false;
 
     protected $fillable = [
         'nombre',
     ];
+
+    // Define la relación con el modelo Moneda
+    public function moneda()
+    {
+        return $this->belongsTo(Moneda::class, 'moneda_id', 'moneda_id');
+    }
 }
