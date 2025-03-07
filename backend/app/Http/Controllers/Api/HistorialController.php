@@ -20,7 +20,7 @@ class HistorialController extends Controller
         $historial->presupuesto_cop = $request->presupuesto_cop;
         $historial->presupuesto_local = $request->presupuesto_local;
         $historial->tasa_cambio = $request->tasa_cambio;
-        $historial->fecha_consulta = $request->fecha_consulta;
+        $historial->fecha_consulta = now();
         $historial->save();
         return response()->json($historial);
     }
