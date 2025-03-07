@@ -3,6 +3,7 @@ import { MonedaService } from '../../services/moneda.service';
 import { ClimaService } from '../../services/clima.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { HistorialService } from '../../services/historial.service';
 
 @Component({
   selector: 'app-results',
@@ -11,6 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './results.component.css'
 })
 export class ResultsComponent {
+  // Define las variables que se usarán en la vista
   ciudad_id: string | null = null;
   ciudad_nombre: string | null = null;
   presupuesto: number | null = null;
@@ -22,7 +24,8 @@ export class ResultsComponent {
   constructor(
     private router: Router,
     private climaService: ClimaService,
-    private monedaService: MonedaService
+    private monedaService: MonedaService,
+    private historialService: HistorialService
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +42,7 @@ export class ResultsComponent {
     }
   }
 
+  // Obtiene el clima de la ciudad seleccionada
   getWeather(): void {
     if (this.ciudad_id) {
       this.climaService.getClima(this.ciudad_id).subscribe(data => {
@@ -49,10 +53,7 @@ export class ResultsComponent {
     }
   }
 
-  getDataCoin(): void {
-
-  }
-
+  // Obtiene la tasa de cambio del pais(ciudad) seleccionada
   getCurrency(): void {
     if (this.ciudad_id) {
       this.monedaService.getMoneda(this.ciudad_id).subscribe((data: any) => {
@@ -61,6 +62,21 @@ export class ResultsComponent {
 
         if (this.presupuesto && this.tasaDeCambio) {
           this.resultadoConversion = this.presupuesto * this.tasaDeCambio;
+
+          // Prepara los datos para guardar en el historial
+          const historialData = {
+            ciudad_id: this.ciudad_id,
+            presupuesto_cop: this.presupuesto,
+            presupuesto_local: this.resultadoConversion,
+            tasa_cambio: this.tasaDeCambio,
+            clima: this.datosClima.temp_c + '°C' + ', ' + this.datosClima.condition.text,
+          };
+
+          // Guarda el historial apenas se obtiene la conversión
+          this.historialService.storeHistorial(historialData).subscribe(response => {
+          }, error => {
+            console.error('Error al guardar historial:', error);
+          });
         }
       }, (error: any) => {
         console.error('Error al obtener la tasa de cambio', error);

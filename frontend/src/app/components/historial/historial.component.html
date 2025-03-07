@@ -1,0 +1,55 @@
+<main class="container py-5">
+  <div class="card mx-auto custom-card" data-v0-t="card">
+    <div class="card-header text-center">
+      <h3 class="card-title h2 fw-bold">Historial de presupuestos</h3>
+      <p class="card-text">Todas las consultas de tus viajes en un sitio</p>
+    </div>
+
+    <div class="card-body">
+      <div *ngFor="let calc of historialUsuario; let i = index" class="mb-3 border rounded overflow-hidden">
+        <div class="d-flex justify-content-between align-items-center p-3"
+          style="background: linear-gradient(to right, #e0d7f8, #f3ebfa);">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-clipboard2 text-violet" style="font-size: 1.25rem;"></i>
+            <h5 class="mb-0 ms-2 fw-medium">{{ calc.ciudad.nombre }}</h5>
+          </div>
+          <span class="badge bg-light text-dark d-flex align-items-center gap-1">
+            <i class="bi bi-calendar" style="font-size: 0.75rem;"></i>
+            {{ formatDate(calc.fecha_consulta) }}
+          </span>
+        </div>
+
+        <div class="p-4">
+          <div class="row">
+            <div class="col-6">
+              <p class="mb-1 text-muted small">Presupuesto original</p>
+              
+              <p class="mb-0 fw-medium">{{ calc.presupuesto_cop }} COP</p>
+            </div>
+            <div class="col-6">
+              <p class="mb-1 text-muted small">Presupuesto convertido</p>
+              <p class="mb-0 fw-medium">{{ calc.presupuesto_local }}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-6">
+              <p class="mb-1 text-muted small">Tasa de cambio</p>
+              <p class="mb-0 fw-medium">1 COP = {{ calc.tasa_cambio | number:'1.6-6' }}</p>
+            </div>
+            <div class="col-6">
+              <p class="mb-1 text-muted small">Clima</p>
+              <p class="mb-0 fw-medium">{{ calc.clima }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <a class="btn btn-gradient w-100" href="/">
+        Nueva consulta
+      </a>
+    </div>
+  </div>
+</main>

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Historial;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,7 @@ class HistorialController extends Controller
         $historial->presupuesto_local = $request->presupuesto_local;
         $historial->tasa_cambio = $request->tasa_cambio;
         $historial->fecha_consulta = now();
+        $historial->clima = $request->clima;
         $historial->save();
         return response()->json($historial);
     }

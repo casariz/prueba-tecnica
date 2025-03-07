@@ -20,7 +20,8 @@ class Historial extends Model
         'presupuesto_cop',
         'presupuesto_local',
         'tasa_cambio',
-        'fecha_consulta'
+        'fecha_consulta',
+        'clima'
     ];
 
     public function ciudad()

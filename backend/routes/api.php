@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\CiudadController;
+use App\Http\Controllers\Api\HistorialController;
 use App\Http\Controllers\Api\MonedaController;
-use App\Http\Controllers\HistorialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
