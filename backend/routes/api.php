@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CiudadController;
 use App\Http\Controllers\Api\MonedaController;
+use App\Http\Controllers\HistorialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,12 @@ Route::controller(CiudadController::class)->group(function () {
 // Rutas para el controlador MonedaController
 Route::controller(MonedaController::class)->group(function () {
     Route::get('monedas', 'index');
-    //Route::get('monedas/{id}', 'show');
     Route::get('monedas/{ciudad_id}', 'obtenerCambio');
+});
+
+// Rutas para el controlador HistorialController
+Route::controller(HistorialController::class)->group(function () {
+    Route::get('historial', 'index');
+    Route::post('historial', 'store');
+    Route::get('historial/{historial_id}', 'show');
 });
