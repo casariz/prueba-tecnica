@@ -38,3 +38,19 @@
     color: rgba(255, 255, 255, 0.9);
   }
   
+  .btn-contrast {
+    background-color: #fff; /* Fondo blanco para resaltar */
+    color: #333; /* Texto oscuro para buen contraste */
+    border: 2px solid #fff;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .btn-contrast:hover {
+    background-color: #f0f0f0;
+    border-color: #f0f0f0;
+    color: #333;
+  }

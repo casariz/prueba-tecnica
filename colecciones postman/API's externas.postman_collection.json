@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "8c7fc099-9a14-4228-8f92-3784ecd16a5d",
+		"name": "API's externas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34563408"
+	},
+	"item": [
+		{
+			"name": "London",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/current.json?key={{key}}&q=London&aqi=no",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"current.json"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "q",
+							"value": "London"
+						},
+						{
+							"key": "aqi",
+							"value": "no"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "COP",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url_monedas}}/{{key_monedas}}/latest/COP",
+					"host": [
+						"{{base_url_monedas}}"
+					],
+					"path": [
+						"{{key_monedas}}",
+						"latest",
+						"COP"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://api.weatherapi.com/v1",
+			"type": "string"
+		},
+		{
+			"key": "key",
+			"value": "2d0494e51e1f423bbbe22402250603",
+			"type": "string"
+		},
+		{
+			"key": "base_url_monedas",
+			"value": "https://v6.exchangerate-api.com/v6",
+			"type": "string"
+		},
+		{
+			"key": "key_monedas",
+			"value": "8cf7429cb3896df654cd1ec6",
+			"type": "string"
+		}
+	]
+}
