@@ -23,7 +23,7 @@ export class ResultsComponent {
     private router: Router,
     private climaService: ClimaService,
     private monedaService: MonedaService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Recupera los datos enviados desde Home
@@ -33,7 +33,7 @@ export class ResultsComponent {
       this.ciudad_nombre = state.ciudad_nombre;
       this.presupuesto = state.presupuesto;
       this.getWeather();
-      this.getCurrency();      
+      this.getCurrency();
     } else {
       this.router.navigate(['/']);
     }
@@ -43,8 +43,6 @@ export class ResultsComponent {
     if (this.ciudad_id) {
       this.climaService.getClima(this.ciudad_id).subscribe(data => {
         this.datosClima = data.current;
-        console.log('Clima:', this.datosClima);
-        
       }, error => {
         console.error('Error al obtener el clima', error);
       });
@@ -60,16 +58,13 @@ export class ResultsComponent {
       this.monedaService.getMoneda(this.ciudad_id).subscribe((data: any) => {
         this.datosMoneda = data;
         this.tasaDeCambio = data.tasa_cambio;
-        //console.log('Tasa de cambio:', data.conversion_rates.COP);
-        
+
         if (this.presupuesto && this.tasaDeCambio) {
           this.resultadoConversion = this.presupuesto * this.tasaDeCambio;
-          console.log('Resultado de la conversión:', this.resultadoConversion)
-          
         }
       }, (error: any) => {
         console.error('Error al obtener la tasa de cambio', error);
-      });   
+      });
     }
   }
 }
