@@ -1,28 +1,29 @@
-  .custom-card {
+.custom-card {
     max-width: 28rem;
     border-top: 4px solid #8b5cf6;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  }
+    
+}
 
-  .text-violet {
+.text-violet {
     color: #8b5cf6;
-  }
+}
 
-  .btn-gradient {
+.btn-gradient {
     background: linear-gradient(to right, #7c3aed, #d946ef);
     color: #fff;
     border: none;
     transition: background 0.3s ease;
-  }
+}
 
-  .btn-gradient:hover {
+.btn-gradient:hover {
     background: linear-gradient(to right, #6d28d9, #c026d3);
-  }
+}
 
-  .dropdown-menu {
+.dropdown-menu {
     min-width: 100%;
-  }
+}
 
-  .fw-medium {
+.fw-medium {
     font-weight: 500;
-  }
+}

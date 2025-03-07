@@ -23,19 +23,31 @@ class MonedaController extends Controller
         // Busca la ciudad; se usa findOrFail para lanzar una excepción si no existe
         $ciudad = Ciudad::findOrFail($ciudad_id);
 
-        // Accede a la relación definida en el modelo Ciudad (por ejemplo, public function moneda())
-        $acronimo = $ciudad->moneda->acronimo;
+        $nombre_moneda = $ciudad->moneda->nombre;
+        $simbolo = $ciudad->moneda->simbolo;
+        $acronimo_moneda = $ciudad->moneda->acronimo;
 
         // Obtiene la API key desde el archivo .env
         $apiKey = env('API_KEY_MONEDAS');
 
         // Construye la URL de la API utilizando la API key y el acrónimo
-        $url = "http://v6.exchangerate-api.com/v6/{$apiKey}/latest/{$acronimo}";
+        $url = "http://v6.exchangerate-api.com/v6/{$apiKey}/latest/COP";
 
         // Realiza la petición HTTP GET a la API sin verificar el certificado SSL
         $response = Http::withoutVerifying()->get($url);
 
-        // Retorna la respuesta en formato JSON
-        return response()->json($response->json());
+        $data = $response->json();
+    
+        // Extrae la tasa de cambio usando el acrónimo de la moneda
+        $tasa_cambio = isset($data['conversion_rates'][$acronimo_moneda])
+            ? $data['conversion_rates'][$acronimo_moneda]
+            : null;
+    
+        // Retorna los datos en formato JSON
+        return response()->json([
+            'tasa_cambio'    => $tasa_cambio,
+            'simbolo_moneda' => $simbolo,
+            'nombre_moneda'  => $nombre_moneda,
+        ]);
     }
 }

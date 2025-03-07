@@ -1,0 +1,67 @@
+<main class="py-5">
+    <div class="card mx-auto custom-card" data-v0-t="card">
+        <div class="card-header text-center">
+            <h3 class="card-title">Información de {{ ciudad_nombre }}</h3>
+            <p class="card-text text-muted">Detalles de clima y conversión de moneda</p>
+        </div>
+        <div class="card-body">
+
+            <!-- Clima -->
+            <div class="mb-4 p-3"
+                style="background: linear-gradient(to right, #ebf8ff, #eff6ff); border-radius: 0.25rem;">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <i class="bi bi-cloud text-primary" style="font-size: 1.25rem;"></i>
+                    <h3 class="h5 mb-0">Clima actual</h3>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="display-4 mb-0">{{ datosClima.temp_c }}°C</p>
+                    <p class="text-secondary mb-0">{{ datosClima.condition.text }}</p>
+                </div>
+            </div>
+
+            <!-- Moneda local -->
+            <div class="mb-4 p-3"
+                style="background: linear-gradient(to right, #d1fae5, #ecfdf5); border-radius: 0.25rem;">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <i class="bi bi-coin text-success" style="font-size: 1.25rem;"></i>
+                    <h3 class="h5 mb-0">Moneda local</h3>
+                </div>
+                <div class="d-flex flex-column">
+                    <p class="mb-1"><strong>Nombre:</strong> {{ datosMoneda.nombre_moneda }}</p>
+                    <p class="mb-1"><strong>Símbolo:</strong> {{ datosMoneda.simbolo_moneda }}</p>
+                </div>
+            </div>
+
+            <!-- Conversión de moneda -->
+            <div class="mb-4 p-3"
+                style="background: linear-gradient(to right, #ede9fe, #f5f3ff); border-radius: 0.25rem;">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <i class="bi bi-bar-chart-line" style="font-size: 1.25rem; color: #6f42c1;"></i>
+                    <h3 class="h5 mb-0">Conversión de moneda</h3>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <p class="mb-0">{{ presupuesto }} COP</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                    </svg>
+                    <p class="mb-0 fw-bold">
+                        {{ datosMoneda.simbolo_moneda }} {{ resultadoConversion }}
+                    </p>
+                </div>
+                <div class="pt-2 border-top" style="border-color: #d6bcfa;">
+                    <p class="mb-0"><strong>Tasa de cambio:</strong> 1 COP = {{ tasaDeCambio | number : '1.6-6' }}
+                        {{ datosMoneda.simbolo_moneda }}</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <a type="button" class="btn btn-outline-primary w-100" href="/">
+                Volver a datos de viaje
+            </a>
+        </div>
+    </div>
+
+</main>
